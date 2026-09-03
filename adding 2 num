@@ -1,1 +1,48 @@
+// JavaScript: Find the greatest of two numbers
 
+/**
+ * Returns the greater of two values a and b.
+ * Attempts to coerce inputs to numbers. If both are NaN, returns NaN.
+ * If one is NaN, returns the numeric one.
+ *
+ * @param {number|string} a
+ * @param {number|string} b
+ * @returns {number}
+ */
+function maxOfTwo(a, b) {
+  const na = Number(a);
+  const nb = Number(b);
+
+  // If both are NaN, return NaN
+  if (Number.isNaN(na) && Number.isNaN(nb)) return NaN;
+  // If one is NaN, return the other
+  if (Number.isNaN(na)) return nb;
+  if (Number.isNaN(nb)) return na;
+
+  return (na > nb) ? na : nb;
+}
+
+// Example usage (Node / console):
+console.log('maxOfTwo(5, 10) ->', maxOfTwo(5, 10)); // 10
+console.log('maxOfTwo(7, 3) ->', maxOfTwo(7, 3));   // 7
+console.log('maxOfTwo(4, 4) ->', maxOfTwo(4, 4));   // 4
+console.log("maxOfTwo('8', '12') ->", maxOfTwo('8', '12'));//12
+console.log("maxOfTwo('a', 3) ->", maxOfTwo('a', 3)); // 3
+console.log("maxOfTwo('x', 'y') ->", maxOfTwo('x', 'y')); // NaN
+
+// Browser prompt example (runs only in browser environments):
+if (typeof window !== 'undefined' && typeof prompt === 'function') {
+  const x = prompt('Enter first number:');
+  const y = prompt('Enter second number:');
+  const greater = maxOfTwo(x, y);
+  if (Number.isNaN(greater)) {
+    alert('One or both inputs are not valid numbers.');
+  } else {
+    alert('The greater number is: ' + greater);
+  }
+}
+
+// Export for Node.js modules
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = maxOfTwo;
+}
